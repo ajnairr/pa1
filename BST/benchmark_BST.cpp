@@ -64,6 +64,9 @@ int main () {
             bst.insert(*it);
             sumTime += t.end_timer();
         }
+        if(run + 1 != NUM_RUN) {
+            bst.~BST<double>();
+        }
     }
     averageTime = sumTime / (insertData.size() * NUM_RUN);
     /*
