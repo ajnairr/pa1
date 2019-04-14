@@ -69,16 +69,7 @@ int main () {
         }
     }
     averageTime = sumTime / (insertData.size() * NUM_RUN);
-    /*
-    cout << endl;
-    for(BST<double>::iterator bstIt = bst.begin(); bstIt != bst.end(); ++bstIt) {
-        cout << *bstIt << endl;
-    }
-    cout << endl;
-    cout << endl;
-    bst.inorder();
-    cout << endl;
-    */
+
     cout << "Average time taken to insert for BST: " << averageTime
     << " milliseconds" << endl;
     
