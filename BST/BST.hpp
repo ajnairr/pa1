@@ -49,6 +49,7 @@ class BST {
       virtual bool insert(const Data& item) {
          if(!root) {
             this->root = new BSTNode<Data>(item);
+            isize++;
             return true;
          }
 
@@ -153,6 +154,7 @@ class BST {
        * TODO
        */
       void inorder() const {
+         inorderRecurse(this->root);
       }
 
 
@@ -191,7 +193,14 @@ class BST {
          delete n;
       }
 
-
+      static void inorderRecurse(BSTNode<Data>* n) {
+         if(!n) {
+            return;
+         }
+         inorderRecurse(n->left);
+         cout << n->data << endl;
+         inorderRecurse(n->right);
+      }
 };
 
 
