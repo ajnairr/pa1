@@ -100,11 +100,20 @@ class BST {
             return this->end();
          }
 
-         BSTIterator<Data> iter = this->begin();
-         while(*iter < item) {
-            iter++;
+         BSTNode<Data>* cur = root;
+         while(cur) {
+            if(item < cur->data) {
+               cur = cur->left;
+            }
+            else if(cur->data < item) {
+               cur = cur->right;
+            }
+            else {
+               return BST<Data>::iterator(cur);
+            }
          }
-         return (item < *iter) ? this->end() : iter;
+
+         return this->end();
       }
 
 
@@ -134,13 +143,13 @@ class BST {
       /** Return an iterator pointing to the first item in the BST (not the root).
        */
       iterator begin() const {
-         return BST::iterator(first(this->root));
+         return BST<Data>::iterator(first(this->root));
       }
 
       /** Return an iterator pointing past the last item in the BST.
        */
       iterator end() const {
-         return typename BST<Data>::iterator(0);
+         return BST<Data>::iterator(0);
       }
 
 
@@ -176,7 +185,7 @@ class BST {
       }
 
       /** do a postorder traversal, deleting nodes
-       *   TODO 	
+       *   TODO
        */
       static void deleteAll(BSTNode<Data>* n) {
          /* Pseudo Code:

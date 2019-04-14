@@ -41,7 +41,7 @@ class BSTNode {
             return 0;
          }
 
-         cur = this->right;
+         cur = cur->right;
          while(cur->left) {
             cur = cur->left;
          }

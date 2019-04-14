@@ -133,13 +133,12 @@ int main() {
 	/* Test find for 2nd BST */
 	vnit = vn.begin();
 	for(; vnit != vn.end(); ++vnit) {
-		if(*(b2.find(*vnit)) != *vnit) {
+		if(*b2.find(*vnit) != *vnit) {
 			cout << "Incorrect return value when finding " << *vnit << endl;
 			return -1;
 		}
 	}
 
 	cout << "OK" << endl;
-
 	return 0;
 }

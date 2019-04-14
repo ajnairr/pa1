@@ -29,7 +29,7 @@ int main () {
     
     vector<double> insertData = randNums(NUM_INSERT, MIN, MAX);
     vector<double> findData = randNums(NUM_FIND, MIN, MAX);
-    
+
     BSA<double> bsa;
     BST<double> bst;
     
@@ -39,17 +39,43 @@ int main () {
     Timer t;
     long long sumTime = 0;
     long long averageTime = 0;
-    
-    // TODO
-    
+    int run;
+    vector<double>::iterator it;
+
+    for(run = 0; run < NUM_RUN; run++) {
+        bsa = BSA<double>();
+        for(it = insertData.begin(); it != insertData.end(); ++it) {
+            t.begin_timer();
+            bsa.insert(*it);
+            sumTime += t.end_timer();
+        }
+    }
+    averageTime = sumTime / (insertData.size() * NUM_RUN);
+
     cout << "Average time taken to insert for BSA: " << averageTime
     << " milliseconds" << endl;
-    
+
     sumTime = 0;
     averageTime = 0;
-    
-    // TODO
-    
+    for(run = 0; run < NUM_RUN; run++) {
+        bst = BST<double>();
+        for(it = insertData.begin(); it != insertData.end(); ++it) {
+            t.begin_timer();
+            bst.insert(*it);
+            sumTime += t.end_timer();
+        }
+    }
+    averageTime = sumTime / (insertData.size() * NUM_RUN);
+    /*
+    cout << endl;
+    for(BST<double>::iterator bstIt = bst.begin(); bstIt != bst.end(); ++bstIt) {
+        cout << *bstIt << endl;
+    }
+    cout << endl;
+    cout << endl;
+    bst.inorder();
+    cout << endl;
+    */
     cout << "Average time taken to insert for BST: " << averageTime
     << " milliseconds" << endl;
     
@@ -63,6 +89,14 @@ int main () {
     averageTime = 0;
     
     // TODO
+    for(run = 0; run < NUM_RUN; run++) {
+        for(it = findData.begin(); it != findData.end(); ++it) {
+            t.begin_timer();
+            bsa.find(*it);
+            sumTime += t.end_timer();
+        }
+    }
+    averageTime = sumTime / (findData.size() * NUM_RUN);
     
     cout << "Average time taken to find for BSA: " << averageTime
     << " milliseconds" << endl;
@@ -71,8 +105,15 @@ int main () {
     averageTime = 0;
     
     // TODO
-    
+    for(run = 0; run < NUM_RUN; run++) {
+       for(it = findData.begin(); it != findData.end(); ++it) {
+            t.begin_timer();
+            bst.find(*it);
+            sumTime += t.end_timer();
+        }
+    }
+    averageTime = sumTime / (findData.size() * NUM_RUN);
+
     cout << "Average time taken to find for BST: " << averageTime
-    << " milliseconds" << endl;
-    
+    << " milliseconds" << endl;    
 }

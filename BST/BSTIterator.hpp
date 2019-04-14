@@ -21,18 +21,18 @@ class BSTIterator : public iterator<input_iterator_tag,Data> {
 
       /** Dereference operator. */
       Data operator*() const {
-         return curr->data;
+         return this->curr->data;
       }
 
       /** Pre-increment operator. */
       BSTIterator<Data>& operator++() {
-         curr = curr->successor();
+         this->curr = this->curr->successor();
          return *this;
       }
 
       /** Post-increment operator. */
       BSTIterator<Data> operator++(int) {
-         BSTIterator before = BSTIterator(curr);
+         BSTIterator before = BSTIterator(this->curr);
          ++(*this);
          return before;
       }

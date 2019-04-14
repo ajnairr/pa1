@@ -16,9 +16,9 @@ class BSA {
          * or else find where it should be inserted.
          */
         virtual size_t binarySearch(const Data& item) const {
-            size_t leftEnd = 0;
-            size_t rightEnd = this->v.size() - 1;
-            size_t mid;
+            long long leftEnd = 0;
+            long long rightEnd = this->v.size() - 1;
+            long long mid;
             while(leftEnd <= rightEnd) {
                mid = (leftEnd + rightEnd) / 2;
                if(this->v[mid] < item) {
@@ -28,16 +28,19 @@ class BSA {
                   rightEnd = mid - 1;
                }
                else {
-                  return mid;
+                  return (size_t)mid;
                }
             }
-            return leftEnd;
+            return (size_t)leftEnd;
         }
 
     public:
         /** Return the position of item, otherwise v.cend() */
         virtual typename vector<Data>::const_iterator
                          find(const Data& item) const {
+            if(this->v.empty()) {
+               return this->v.cend();
+            }
             typename vector<Data>::const_iterator it = this->v.cbegin() +
                                                        this->binarySearch(item);
             if(*it < item || item < *it) {
@@ -48,6 +51,10 @@ class BSA {
 
         /** Insert item into sorted position */
         virtual bool insert(const Data& item) {
+            if(this->v.empty()) {
+               this->v.push_back(item);
+               return true;
+            }
             typename vector<Data>::iterator it = this->v.begin() +
                                                  this->binarySearch(item);
 
@@ -58,11 +65,11 @@ class BSA {
             return false;
         }
 
-        typename vector<Data>::iterator begin() const {
+        typename vector<Data>::iterator begin() {
             return this->v.begin();
         }
 
-        typename vector<Data>::iterator end() const {
+        typename vector<Data>::iterator end() {
             return this->v.end();
         }
 };
