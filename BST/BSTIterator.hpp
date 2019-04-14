@@ -44,16 +44,12 @@ class BSTIterator : public iterator<input_iterator_tag,Data> {
        * BSTNode in the same BST.
        * TODO */
       bool operator==(BSTIterator<Data> const & other) const {
-
-         return false;
-
+         return other.curr == this->curr;
       }
 
       /** Inequality test operator. TODO */
       bool operator!=(BSTIterator<Data> const & other) const {
-
-         return false;
-
+         return other.curr != this->curr;
       }
 
 };

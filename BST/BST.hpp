@@ -34,7 +34,7 @@ class BST {
         * Delete every node in this BST.
         */
       virtual ~BST() {
-         deleteAll(root);
+         deleteAll(this->root);
       }
 
       /** Given a reference to a Data item, insert a copy of it in this BST.
@@ -47,6 +47,41 @@ class BST {
        *  TODO
        */
       virtual bool insert(const Data& item) {
+         if(!root) {
+            this->root = new BSTNode<Data>(item);
+            return true;
+         }
+
+         BSTNode<Data>* cur = this->root;
+         bool leftTraverse;
+         int curHeight = 0;
+         while((leftTraverse = item < cur->data) || cur->data < item) {
+            curHeight++;
+            if(leftTraverse) {
+               if(!cur->left) {
+                  cur->left = new BSTNode<Data>(item);
+                  cur->left->parent = cur;
+                  this->isize++;
+                  if(curHeight > this->iheight) {
+                     this->iheight = curHeight;
+                  }
+                  return true;
+               }
+               cur = cur->left;
+            }
+            else {
+               if(!cur->right) {
+                  cur->right = new BSTNode<Data>(item);
+                  cur->right->parent = cur;
+                  this->isize++;
+                  if(curHeight > this->iheight) {
+                     this->iheight = curHeight;
+                  }
+                  return true;
+               }
+               cur = cur->right;
+            }
+         }
          return false;
       }
 
@@ -60,7 +95,15 @@ class BST {
        *  TODO
        */
       virtual iterator find(const Data& item) const {
-         return 0; 
+         if(this->isize == 0) {
+            return this->end();
+         }
+
+         BSTIterator<Data> iter = this->begin();
+         while(*iter < item) {
+            iter++;
+         }
+         return (item < *iter) ? this->end() : iter;
       }
 
 
@@ -68,7 +111,7 @@ class BST {
        *  TODO 
        */
       unsigned int size() const {
-         return 0;
+         return this->isize;
       }
 
       /** Return the height of the BST.
@@ -77,20 +120,20 @@ class BST {
        *  TODO  
        */
       unsigned int height() const {
-         return 0;
+         return this->iheight;
       }
 
 
       /** Return true if the BST is empty, else false.
        */
       bool empty() const {
-         return isize == 0;
+         return this->isize == 0;
       }
 
       /** Return an iterator pointing to the first item in the BST (not the root).
        */
       iterator begin() const {
-         return BST::iterator(first(root));
+         return BST::iterator(first(this->root));
       }
 
       /** Return an iterator pointing past the last item in the BST.
@@ -119,7 +162,15 @@ class BST {
        *  TODO 
        */ 
       static BSTNode<Data>* first(BSTNode<Data>* root) {
-         return 0;
+         if(!root) {
+            return nullptr;
+         }
+
+         BSTNode<Data>* cur = root;
+         while(cur->left) {
+            cur = cur->left;
+         }
+         return cur;
       }
 
       /** do a postorder traversal, deleting nodes
@@ -132,6 +183,12 @@ class BST {
             recursively delete right sub-tree
             delete current node
             */
+         if(!n) {
+            return;
+         }
+         deleteAll(n->left);
+         deleteAll(n->right);
+         delete n;
       }
 
 
