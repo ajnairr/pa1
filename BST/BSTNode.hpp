@@ -1,3 +1,9 @@
+/**
+ * Implementation of a node object that make up a binary search tree.
+ *
+ * Name: Ajay Nair
+ * Email: ajnair@ucsd.edu
+ */
 #ifndef BSTNODE_HPP
 #define BSTNODE_HPP
 #include <iostream>
@@ -11,7 +17,6 @@ class BSTNode {
 
       /** Constructor.  Initialize a BSTNode with the given Data item, no
        *  parent, and no children.
-       *  TODO
        */
       BSTNode(const Data & d):left(nullptr), right(nullptr), parent(nullptr),
                               data(d)
@@ -26,7 +31,7 @@ class BSTNode {
        *  PRECONDITION: this BSTNode is a node in a BST.
        *  POSTCONDITION:  the BST is unchanged.
        *  RETURNS: the BSTNode that is the successor of this BSTNode, or 0 if
-       *  there is none. TODO
+       *  there is none.
        */
       BSTNode<Data>* successor() {
          BSTNode<Data>* cur = this;

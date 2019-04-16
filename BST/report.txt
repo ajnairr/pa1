@@ -1,0 +1,10 @@
+/**
+ * Name: Ajay Nair
+ * Email: ajnair@ucsd.edu
+ */
+
+1. BST was significantly faster for insert
+
+2. BSA was slightly faster for find
+
+3. 

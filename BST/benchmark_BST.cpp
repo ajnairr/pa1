@@ -1,4 +1,10 @@
-
+/*
+ * Program to run some benchmark tests comparing a binary search tree's
+ * functions against a binary search array
+ *
+ * Name: Ajay Nair
+ * Email: ajnair@ucsd.edu
+ */
 #include <iostream>
 #include "BSA.hpp"
 #include "BST.hpp"
@@ -20,7 +26,6 @@ vector<double> randNums(unsigned int size, int min, int max) {
 }
 
 int main () {
-    // TODO: value to change to do benchmarking
     const int MIN = 0; // min value of random data
     const int MAX = 100; // max value of random data
     const int NUM_INSERT = 30000; // number of random data to insert
@@ -82,7 +87,6 @@ int main () {
     sumTime = 0;
     averageTime = 0;
     
-    // TODO
     for(run = 0; run < NUM_RUN; run++) {
         for(it = findData.begin(); it != findData.end(); ++it) {
             t.begin_timer();
@@ -98,7 +102,6 @@ int main () {
     sumTime = 0;
     averageTime = 0;
     
-    // TODO
     for(run = 0; run < NUM_RUN; run++) {
        for(it = findData.begin(); it != findData.end(); ++it) {
             t.begin_timer();

@@ -1,3 +1,9 @@
+/**
+ * Implementation of a binary search tree.
+ *
+ * Name: Ajay Nair
+ * Email: ajnair@ucsd.edu
+ */
 #ifndef BST_HPP
 #define BST_HPP
 #include "BSTNode.hpp"
@@ -44,7 +50,6 @@ class BST {
        *  Note: This function should use only the '<' operator when comparing
        *  Data items. (should not use ==, >, <=, >=)  For the reasoning
        *  behind this, see the assignment writeup.
-       *  TODO
        */
       virtual bool insert(const Data& item) {
          if(!root) {
@@ -93,7 +98,6 @@ class BST {
        *  Note: This function should use only the '<' operator when comparing
        *  Data items. (should not use ==, >, <=, >=).  For the reasoning
        *  behind this, see the assignment writeup.
-       *  TODO
        */
       virtual iterator find(const Data& item) const {
          if(this->isize == 0) {
@@ -118,7 +122,6 @@ class BST {
 
 
       /** Return the number of items currently in the BST.
-       *  TODO 
        */
       unsigned int size() const {
          return this->isize;
@@ -127,7 +130,6 @@ class BST {
       /** Return the height of the BST.
        * The height of an empty tree is -1 and the height of a tree
        * with only one node is 0.
-       *  TODO  
        */
       unsigned int height() const {
          return this->iheight;
@@ -160,7 +162,6 @@ class BST {
        * recursively traverse left sub-tree
        * print current node data
        * recursively traverse right sub-tree
-       * TODO
        */
       void inorder() const {
          inorderRecurse(this->root);
@@ -170,7 +171,6 @@ class BST {
    private:
 
       /** Find the first element of the BST
-       *  TODO 
        */ 
       static BSTNode<Data>* first(BSTNode<Data>* root) {
          if(!root) {
@@ -185,7 +185,6 @@ class BST {
       }
 
       /** do a postorder traversal, deleting nodes
-       *   TODO
        */
       static void deleteAll(BSTNode<Data>* n) {
          /* Pseudo Code:

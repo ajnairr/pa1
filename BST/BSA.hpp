@@ -1,3 +1,10 @@
+/**
+ * Implementation of a binary search array.
+ * 
+ * Name: Ajay Nair
+ * Email: ajnair@ucsd.edu
+ * Sources of Help: Piazza
+ */
 #ifndef BSA_HPP
 #define BSA_HPP
 

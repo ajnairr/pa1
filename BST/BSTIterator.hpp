@@ -1,3 +1,10 @@
+/**
+ * Implementation of an iterator object that can do an in order traversal of a
+ * binary search tree
+ * 
+ * Name: Ajay Nair
+ * Email: ajnair@ucsd.edu
+ */
 #ifndef BSTITERATOR_HPP
 #define BSTITERATOR_HPP
 #include "BSTNode.hpp"
@@ -42,12 +49,12 @@ class BSTIterator : public iterator<input_iterator_tag,Data> {
        * cannot be null. Return true if other is equal to the calling 
        * object. Two iterators are equal if they point to the same 
        * BSTNode in the same BST.
-       * TODO */
+       */
       bool operator==(BSTIterator<Data> const & other) const {
          return other.curr == this->curr;
       }
 
-      /** Inequality test operator. TODO */
+      /** Inequality test operator. */
       bool operator!=(BSTIterator<Data> const & other) const {
          return other.curr != this->curr;
       }
