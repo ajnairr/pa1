@@ -27,8 +27,8 @@ vector<double> randNums(unsigned int size, int min, int max) {
 int main () {
   const int MIN = 0; // min value of random data
   const int MAX = 100; // max value of random data
-  const int NUM_INSERT = 30000; // number of random data to insert
-  const int NUM_FIND = 30000; // number of random data to find
+  const int NUM_INSERT = 500000; // number of random data to insert
+  const int NUM_FIND = 500000; // number of random data to find
   const int NUM_RUN = 10;
 
   vector<double> insertData = randNums(NUM_INSERT, MIN, MAX);
@@ -47,11 +47,13 @@ int main () {
   vector<double>::iterator it;
 
   for(run = 0; run < NUM_RUN; run++) {
-    bsa = BSA<double>();
     for(it = insertData.begin(); it != insertData.end(); ++it) {
       t.begin_timer();
       bsa.insert(*it);
       sumTime += t.end_timer();
+    }
+    if(run < NUM_RUN - 1) {
+      bsa = BSA<double>();
     }
   }
   averageTime = sumTime / (insertData.size() * NUM_RUN);
@@ -62,14 +64,14 @@ int main () {
   sumTime = 0;
   averageTime = 0;
   for(run = 0; run < NUM_RUN; run++) {
-    bst = BST<double>();
     for(it = insertData.begin(); it != insertData.end(); ++it) {
       t.begin_timer();
       bst.insert(*it);
       sumTime += t.end_timer();
     }
-    if(run + 1 < NUM_RUN) {
+    if(run < NUM_RUN - 1) {
       bst.~BST<double>();
+      bst = BST<double>();
     }
   }
   averageTime = sumTime / (insertData.size() * NUM_RUN);

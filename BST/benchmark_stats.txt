@@ -1,0 +1,10 @@
+Insert benchmarking for BSA and BST:
+Number of data to insert: 500000
+Average time taken to insert for BSA: 43637 milliseconds
+Average time taken to insert for BST: 1962 milliseconds
+
+Find benchmarking for BSA and BST:
+Number of data in BSA/BST: 500000
+Number of data to find: 500000
+Average time taken to find for BSA: 1059 milliseconds
+Average time taken to find for BST: 2062 milliseconds
