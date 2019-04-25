@@ -1,4 +1,3 @@
-
 #ifndef Point_hpp
 #define Point_hpp
 
@@ -81,6 +80,12 @@ struct CompareValueAt {
 struct CompareDist {
   bool operator() (const Point & p1, const Point & p2) {
     return p1.squareDistToQuery < p2.squareDistToQuery;
+  }
+};
+
+struct CompareLabel {
+  bool operator() (const Point & p1, const Point & p2) {
+    return p1.label < p2.label;
   }
 };
 

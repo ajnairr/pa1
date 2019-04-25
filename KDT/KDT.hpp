@@ -12,27 +12,25 @@ using namespace std;
 
 /** A KD tree that can output K nearest neighbors of given query point */
 class KDT {
-    
-  protected:
-    
-    /** Inner class that defines a KDNode with certain data point 
-    *  and pointers to its children and parent
-    */
-    class KDNode {
-        
-      public:
-        
-      KDNode * left;
-      KDNode * right;
-      KDNode * parent;
-      Point point;
-        
-      KDNode() {}
-        
-      KDNode(Point point) : point(point) {}
-    };
 
-    
+  protected:
+
+    /** Inner class that defines a KDNode with certain data point 
+     *  and pointers to its children and parent
+     */
+    class KDNode {
+
+      public:
+
+        KDNode * left;
+        KDNode * right;
+        KDNode * parent;
+        Point point;
+
+        KDNode() {}
+
+        KDNode(Point point) : point(point) {}
+    };
 
     KDNode * root; // root of KD tree
     unsigned int numDim; // number of dimension of data points
@@ -40,14 +38,15 @@ class KDT {
     double threshold; // largest distance to query point in current KNN
     unsigned int isize;
     unsigned int iheight;
-    
+
     // TODO: define a data structure to store current K nearest neighbors
     priority_queue<Point, vector<Point>, CompareDist> kNN;
+  
   public:
-    
+
     /** TODO: Default constructor of KD tree */
-    KDT() : root(nullptr), numDim(0), threshold(DBL_MAX), isize(0),
-            iheight(0) {}
+    KDT() : root(nullptr), numDim(0), threshold(DBL_MAX), isize(0), 
+                                                          iheight(0) {}
 
     ~KDT() {
       this->deleteAll(this->root);
@@ -64,7 +63,7 @@ class KDT {
       }
       this->root = buildSubtree(points, 0, points.size(), 0, 0);
     }
-    
+
     /** Find k nearest neighbors of the given query point */
     vector<Point> findKNearestNeighbors(Point queryPoint, unsigned int k) {
       kNN = priority_queue<Point, vector<Point>, CompareDist>(CompareDist());
@@ -77,23 +76,24 @@ class KDT {
         points.push_back(kNN.top());
         kNN.pop();
       }
+      sort(points.begin(), points.end(), CompareLabel());
       return points;
     }
 
     /** Return the size of the KD tree */
     unsigned int size() {
-        return isize;
+      return isize;
     }
 
     /** Return the height of the KD tree */
     unsigned int height() {
-        return iheight;
+      return iheight;
     }
 
   private:
     /** Helper method to recursively build the subtree of KD tree. */
     KDNode * buildSubtree(vector<Point>& points, unsigned int start, 
-                    unsigned int end, unsigned int d, unsigned int height) {
+                        unsigned int end, unsigned int d, unsigned int height) {
       if(start >= end) {
         return nullptr;
       }
@@ -112,13 +112,13 @@ class KDT {
       KDNode* node = new KDNode(points[mid]);
       this->isize++;
       node->left = buildSubtree(points, start, mid, (d + 1) % this->numDim,
-                                height + 1);
+                                                                    height + 1);
       if(node->left) {
         node->left->parent = node;
       }
 
       node->right = buildSubtree(points, mid + 1, end, (d + 1) % this->numDim,
-                                 height + 1);
+                                                                    height + 1);
       if(node->right) {
         node->right->parent = node;
       }
@@ -126,7 +126,7 @@ class KDT {
     }
 
     /** Helper method to recursively find the K nearest neighbors */
-    void findKNNHelper(KDNode *node, const Point & queryPoint, unsigned int d){
+    void findKNNHelper(KDNode *node, const Point & queryPoint, unsigned int d) {
       if(!node) {
         return;
       }
